@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Reduced testcase for bug 1350616</title>
     <script src="resources/script/jquery-3.2.0.js"></script>
-    <script src="resources/script/jquery.mousewheel.js"></script>
+    <script src="resources/script/jquery.mousewheel-3.1.3.js"></script>
     <style>
       #foo {
         width: 200px;
@@ -15,8 +15,8 @@
     <script>
       $(document).ready(function() {
         console.log("Hello, world!");
-        $('#foo').mousewheel(function(e) { 
-          console.log(e.deltaX, e.deltaY, e.deltaFactor);
+        $('#foo').mousewheel(function(e, delta) { 
+          console.log(delta);
         });
       });
     </script>
