@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+// add spinning button
+var B_spinning = document.createElement('button');
+B_spinning.setAttribute('style','position:fixed;top:100px;left:400px;');
+B_spinning.className = 'spinning';
+B_spinning.innerHTML = 'The long button';
+
+// add buttons to toggle the spinning button
+var B_append = document.createElement('button');
+B_append.addEventListener('click',()=>{document.body.appendChild(B_spinning);},false);
+B_append.innerHTML = 'Append';
+document.body.appendChild(B_append);
+
+var B_remove = document.createElement('button');
+B_remove.addEventListener('click',()=>{document.body.removeChild(B_spinning);},false);
+B_remove.innerHTML = 'Remove';
+document.body.appendChild(B_remove);
+</script>
+<style>
+button.spinning{
+    -webkit-animation-name: spin;
+    -webkit-animation-duration: 4000ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-name: spin;
+    -moz-animation-duration: 4000ms;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    -ms-animation-name: spin;
+    -ms-animation-duration: 4000ms;
+    -ms-animation-iteration-count: infinite;
+    -ms-animation-timing-function: linear;
+    
+    animation-name: spin;
+    animation-duration: 4000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+@-ms-keyframes spin {
+    from { -ms-transform: rotate(0deg); }
+    to { -ms-transform: rotate(360deg); }
+}
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+</style>
+<div style="position:fixed;bottom:-300px;width:300px;height:600px;background:gray;overflow-y:scroll;"><div style="height:1500px;">
+</body>
+</html>
