@@ -1,0 +1,42 @@
+<style>
+#button {
+  width: 300px;
+  text-align: center;
+  height: 50px;
+  line-height: 25px;
+  background: orange;
+  border-radius: 20px;
+}
+#scrollable {
+  overflow: scroll;
+  width: 300px;
+  height: 400px;
+  overscroll-behavior: contain;
+}
+#content {
+  width: 300px;
+  height: 2000px;
+  background: linear-gradient(red, yellow);
+}
+#sub-content {
+  width: 300px;
+  height: 2000px;
+  background: linear-gradient(blue, green);
+}
+</style>
+<div id="button">
+  overscroll-behavior: contain<br>
+  Click to change
+</div>
+<div id="scrollable">
+  <div id="sub-content">
+  </div>
+</div>
+<div id="content"></div>
+<script>
+var button = document.getElementById("button");
+button.addEventListener("click", function() {
+  document.getElementById("scrollable").style.overscrollBehavior = "auto";
+  button.textContent = "overscroll-behavior: auto";
+});
+</script>
