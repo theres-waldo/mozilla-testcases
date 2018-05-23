@@ -8,29 +8,22 @@
       body {
         margin: 0;
       }
-      #foreground {
-        background: white;
+      #reachable {
+        background: repeating-linear-gradient(0deg, red 10px, orange 20px, red 30px);
+        width: 100%;
+        height: 200%;
         position: absolute;
         z-index: 1;
       }
-      #background {
-        background: red;
-        width: 2000px;
-        height: 3000px;
+      #unreachable {
+        background: repeating-linear-gradient(0deg, blue 10px, green 20px, blue 30px);
+        width: 200%;
+        height: 200%;
         position: absolute;
         z-index: 0;
       }
     </style>
   </head>
-  <div id="background">
-  </div>
-  <div id="foreground">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc aliquam dolor in ligula convallis, nec rutrum lectus elementum. Aliquam nunc lectus, placerat vel ultricies sit amet, bibendum sit amet justo. Morbi efficitur, massa id malesuada venenatis, nulla ex mattis odio, et vehicula arcu lorem in justo. Phasellus nulla est, facilisis eget risus ut, pharetra pulvinar mi. Pellentesque laoreet sapien et nisi condimentum eleifend. Etiam arcu eros, consectetur quis lorem nec, placerat pulvinar arcu. Pellentesque elementum pretium est non finibus. Mauris vitae justo et metus volutpat suscipit at at erat. Maecenas ullamcorper vehicula facilisis.
-
-    Proin vel sapien et tellus lacinia imperdiet. Integer blandit aliquam fermentum. Sed a leo tortor. Donec sagittis nunc vitae diam finibus, nec ultrices sapien venenatis. Suspendisse ultricies ligula nisl. Aliquam nec suscipit felis. Suspendisse sed urna sit amet dolor congue tempor. Suspendisse pretium luctus orci quis sodales.
-
-    Nam dignissim velit quis ante fringilla, sed sodales lectus varius. Nulla facilisi. Vestibulum elementum venenatis leo, sed efficitur nunc rhoncus in. Quisque nec eros pulvinar, facilisis dolor eu, tempor turpis. Sed eu consequat erat. Mauris tristique, metus vel venenatis ornare, ante dui ultricies justo, tempus pharetra ipsum turpis vel lectus. Sed eget sollicitudin quam, in tristique nulla.
-
-    Morbi dapibus efficitur gravida. Sed cursus rhoncus erat, sit amet condimentum urna varius vitae. Sed finibus tortor tortor, ut accumsan ligula efficitur vitae. Phasellus et sollicitudin massa. Nulla et faucibus mauris. Praesent suscipit, ipsum et vulputate eleifend, dui lectus eleifend libero, sed eleifend leo mi a eros. Curabitur vitae scelerisque nisi. Nam lacus metus, iaculis eget viverra eu, finibus ac lectus. Nullam vel nisi elementum tellus dignissim iaculis id sit amet est. Nam aliquet pretium nibh nec luctus.
-  </div>
+  <div id="reachable"></div>
+  <div id="unreachable"></div>
 </html>
