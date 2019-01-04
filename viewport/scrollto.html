@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width initial-scale=2.0">
+    <style>
+      .A {
+        width: 200%;
+        height: 100%;
+        background: red;
+      }
+      .B {
+        width: 200%;
+        height: 50%;
+        background: blue;
+      }
+      .C {
+        width: 200%;
+        height: 50%;
+        background: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="A">
+      <button id="scrollto">scrollTo()</button>
+      <div id="message"></div>
+    </div>
+    <div class="B"></div>
+    <div class="C"></div>
+    <script>
+      scrollto.addEventListener("click", function() {
+        var se = document.scrollingElement;
+        var layoutScrollRange = {
+          x: se.scrollWidth - se.clientWidth,
+          y: se.scrollHeight - se.clientHeight
+        };
+        var target = {
+          x: layoutScrollRange.x / 2 * 3,
+          y: layoutScrollRange.y / 2 * 3
+        };
+        message.textContent = "scrollTo(" + target.x + "," + target.y + ")";
+        window.scrollTo(target.x, target.y);
+      });
+    </script>
+  </body>
+</html>
