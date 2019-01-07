@@ -1,43 +1,44 @@
 <html>
   <head>
-    <meta name="viewport" content="width=device-width initial-scale=2.0">
+    <meta name="viewport" content="width=device-width minimum-scale=0.5">
     <style>
+      div {
+        position: absolute;
+      }
       .A {
-        width: 200%;
-        height: 100%;
+        width: 300%;
+        height: 300%;
         background: red;
       }
       .B {
         width: 200%;
-        height: 50%;
-        background: blue;
+        height: 200%;
+        background: green;
       }
       .C {
-        width: 200%;
-        height: 50%;
-        background: green;
+        width: 100%;
+        height: 100%;
+        background: blue;
+      }
+      button {
+        position: absolute;
+        top: 100%;
+        margin: 20px;
       }
     </style>
   </head>
   <body>
-    <div class="A">
-      <button id="scrollto">scrollTo()</button>
-      <div id="message"></div>
-    </div>
+    <div class="A"></div>
     <div class="B"></div>
     <div class="C"></div>
+    <button id="scrollto">scrollTo()</button>
     <script>
       scrollto.addEventListener("click", function() {
         var se = document.scrollingElement;
-        var layoutScrollRange = {
-          x: se.scrollWidth - se.clientWidth,
-          y: se.scrollHeight - se.clientHeight
-        };
         var target = {
-          x: layoutScrollRange.x / 2 * 3,
-          y: layoutScrollRange.y / 2 * 3
+          x: se.clientWidth,
+          y: 0
         };
-        message.textContent = "scrollTo(" + target.x + "," + target.y + ")";
         window.scrollTo(target.x, target.y);
       });
     </script>
