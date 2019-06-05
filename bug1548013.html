@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Hammer.JS - Hammer.js</title>
+
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Add multi-touch gestures to your webpage.">
+    <link rel="canonical" href="/">
+
+    <!--<link rel="icon" href="/assets/img/favicon.ico">
+    <link rel="stylesheet" href="/assets/css/index.css">-->
+    <link rel="stylesheet" href="https://hammerjs.github.io/assets/css/index.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+    #blockInput {
+    touch-action: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 9999;
+    background: url('data:image/gif;base64,R0lGODlhQABAAKUAACQmJJyenNTS1GRmZOzq7Ly+vDw+PNze3ISGhPT29MzKzDw6PLS2tExKTCwuLKSmpNza3GxubPTy9MTGxOTm5IyOjPz+/CwqLNTW1GxqbOzu7MTCxERCROTi5Pz6/MzOzExOTKyqrJSSlP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJBgAjACwAAAAAQABAAAAG/sCRcEgsGouWhIYwlIQ2B8txSq1ahx4NRLHZFBTDAwBwuYAQBcl1zRZaNBivvLABCw+XMZl8iRQ8bYFIFAp0hnN2I2J5emN5Bg+AgmwWFF2HmBsTQx16jJ5jCw9Sk1USXJmZm0Kdn42vIBilUx2pc4hhr7qOZAGzRB4CtraJnY2MrrwZGr8jFh+3w16JeK+fyWMgar8eH9KY1Mege64ipaRC3dHrX5zWu7wVpR4KB8DQ33VhyLx5/nrmsEi6EqdAh3vSNgiwJ0QCggEL4PEK2FCAgDW15DBMhw/RgW1TIFTggA2AvCZcNhw0FW0lR0MKCAy04oFBg3JEJAi4tAGk/pFn6zaOUNcBXRsPAcqYzCmMjpcPRolYsiXUQ4JmEBpQHKEzk8ojFnimctmsCTBU0SZEHZFRmtCywHba+krEwgR2iNaWVTesgFoiBPAeugq3SALBXTYwGSIMMdnCnPB6KXAxHeIvegtbQDtXEoF8iyEb+SxWzuTFEL4pyAx5c0JZI7wJfiuayAHEYMJ+I1zbiITLFiR8W9X7yF1pEjQgrlzcSONhBKbipd1cEWIK1bNr3869u3cr0ql6vy2NgnJpzLc/Z6dBuGDi24/jlaBbMO/sv79JKSSZeu+27HwgRGqCraada5LBRpo0oTW3IF7YOXOZgc0hKM1AcgkWYXEd+1yW3oNz3QfZYaDVJd8wFIrGF15/EQGgeMV1I81jzpwYjX+zGLUiJi0WQcEwZFnVTAL13LPOhkh0dEhV0BQ1iQUdehGkbIZARUV+czApR0ysIUEAZ1AY6ZRPRwCopSF0TNABmYYdwF8mZ9J4RGNnRpOmAC55cIAANo51T3pVdFOnVzANkUA+SwIzE01iXiZgQ5fdguNRSuJmKKKSNgMUpgU8ylWk4HRJ03r5JHIoqF4IsGgpHWJqKqd0FXYKop5iqRqbZVXS5y2vIjYBBaJy08GudPRqi5qrFvdGhocYe4sABATbWxZbTFaraQpAINN3VCSxBBbmJSDtGkEAACH5BAkGACMALAAAAABAAEAAhSQmJJyanMzOzOzq7GxqbLS2tERCRNze3PT29MTCxDw6PKSmpNTW1IyKjCwuLPTy9Ly+vExOTOTm5Pz+/MzKzCwqLJyenNTS1Ozu7Hx+fLy6vOTi5Pz6/MTGxDw+PKyqrNza3JSSlFRWVP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAb+wJFwSCwaixMEZjDkSDCIyXFKrVqbGBAlkYBQhghuVwDCcK7otHCCYXTfkMRXiIDE71zGQKruEycSFHiDcyNhg3AUG3x+aIBciHgdYHCVdgkdi41WD1uRlZNCHJ+IFA+bUxukloWHlq8QG6hEHBerpWC3lgxnsxMCsLCtwaQUvagcArp3w8tvCQebjCPJxImUznHRjRwU26LAuq3Z0EQIp2husbTKwQkX3xwgFx3WEN8jDyIEaKpv+NUIHUA35cEBQa/w6asAwAInS7KatPMy4JiVCQMQ3lEogiGACgyo/ErILoEmPxM2/COyEMBHACKmEZEQDCCCWYa8sezosif+gA9HJkCCFRHnn50efQJQcLOIv1X4jO5UqjQAknq3KMiU2jLpS5cGLA6wl6CpVCIHHFD16FEDEVvWip4lYsErVQD8RNnTOtcIhwg9GQoOjG6ALiZ9jRSw6zKp2xEgsm5NzMFA4K8vMwiZCCtq4iEhGPuMMELoLbOfiYC4rJQhhwe3QqU2ooD15TLWLsw+QuCuTw00oe420sB2YKDDkytfzry58yHBazY/YO1J7uZwSWGATUy2cqzBHpgmhnr3A3tSNL4qp/wpLAFCIhPjO3yCekQJQo4wbA3xbv6rSLDGXpOdZZ8ux1xgj4CzqXSLbkMA6E55Z7myin+lgVdMgbPlBBRMBzK594lnZyWzilxraGgJib6UFAmIR0hAilwcUNgHAjpJ9AqDRoyECEDAnNRHSpDQyBkEAnB43iBAvkHBHmlg5MlKOsaRAEGp4NHkHXFkgqURCBw0oosoTgHXlpZ0eUFRHBxAjz1GQnhFMmjix0wuZGlDi0VWWOThLfAJsWSe7OH0pzXjEKqnL+HkGWg+inZB3ya1kJNoNhfwuYmDZF1KVpmzdLLMo4Nm9aVUgKiICx26dCABh0ZxsIGqTuL5SSaapsaGgqsa8skFUD7HQRaeIDnEoHKAUNFzUySxRBNPRDFXEAAh+QQJBgAkACwAAAAAQABAAIUkJiScmpzMzsxkZmTs6uy0trREQkTc3tz09vTEwsQ8Ojx8fnykpqTU1tQ0MjT08vS8vrxMTkzk5uT8/vzMysyMiowsKiycnpzU0tRsamzs7uy8urzk4uT8+vzExsQ8Pjysqqzc2txUVlSUkpT///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG/kCScEgsGosThIYw7Eg0iMlxSq1am5oQJZGAUIYIblcQ0nSu6LRwoml035DEV4iAxO/cBkGq7hMnEhR4g3MkYYNwFBx8fmiAXIh4HmBwlXYJHouNVg9bkZWTQh2fiBQPm1McpJaFh5avEByoRB0Yq6Vgt5YNZ7MTArCwrcGkFL2oHQK6d8PLbwkHm4wkycSJlM5x0Y0dFNuiwLqt2dB/x1ZusbTKwQkY3x0hGB7WEN/UAhhoqm/31YQHTlF5cEDQK3/hZFV5YEkhOGYEzlWZQMDgHYTPBB75dXBdAk1+JnDoR8sWHAHTiEgI5g/BLEPePCKSsBESLIcvh0z7Z8lD/koS/Fbdyynz1Uck9G5R+JmTZyQIPokQqJfAJdEirj5xYTLE5CqcV4eMJGVHn6h6S8MamWDRaIJeBHRxVVskLjEIXEMoZaqW7aoEDYSwIzWUrlilJCbUs2q4CMNbEx7cCtXYSNJgSqyZrVzEKywNK4VyNnLAGs3RqFOrXs269ZDQLFlXAEC7tm0AIDRoZj3AAgDfwH//hiCZGOXUCm4rD6H4FuPRIWj7Vv77TFtE5VKPoG47ghC9xNKOnmBAeO3pvhcIsbtqbuUNyqfXLrAGLV+iEyLItw3cgkYM9ZzW2AW3BVfbAFLpUlVjHDhgXoG/0afTZcXch8oDIkAonwIS5wUVW2MYcudbAGtRaElhL00TonDyOaCRSqTg1MFzjSAQ0xAr8gfCFBwhghFIfYgECU4hyheBREQ8BgdGcVCwRxoUeUISjhkC8NtmqeDBZBdxZPKiEQgU9Mk9GI6IhklbDtIlBg51cMA89RAZQQZpJJNmJdfQQQ6ZX1ZxjlPECIAjVVoSBegq4xA6JSo9EiqoEEpmI94mtZCTaDYYINnIWFRdShVYL3WyzKMkRBpenzkBYiIuelrjgQQWvtQBB6u+4SkimWhqGBsAsmrIJxg86VoHWXgCAalKyhFCRK7xqMRcTkARqxpBAAAh+QQJBgAiACwAAAAAQABAAIUkJiScmpzMzsxkZmTs6uw8Pjy8urzc3tz09vSEgoTExsQ8OjzU1tRMSkwsLiykoqT08vTEwsTk5uT8/vyUkpQsKizU0tRsbmzs7uxERkS8vrzk4uT8+vyMiozMyszc2txMTkykpqT///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG/kCRcEgsGosTBIYw5EgwiMlxSq1am5iPJxLReIYIblfwwXCu6LRwgmF035rIV4jQxO9cBkGq7hMnEh54g3MiYYNwHht8fmiAXIh4CmBwlXYRCouNVhBbkZWTQhyfiB4Qm1MbpJaFh5avGhuoRBwWq6Vgt5YMZ7MTArCwrcGkHr2oHAK6d8PLbxEHm4wiycSJlM5x0Y0cHtuiwLqt2dB/x1ZusbTKwREW3xwfFgrWGt/UAhZoqm/31YQHTlGBcEDQK3/hZFWBYEkhOGYEzlWZQMDgHYTPBB75dXBdBE1+JmzoR8sWHAHTiEgI5g/BLEPePCKSsBESLIcvh0z7Z0lB/koR/Fbdyynz1Uck9G55+JmTZyQNPokQqBfBJdEirj5xYTLE5CqcV4eMJGVHn6h6S8MamWDRaIReBHRxVVskLjENXD8oZaqW7aoIDISwIzWUrlilIibUs2q4CMNbEyDcCtXYSNJgSqyZrVzEKywMK4VyNnLAGs3RqFOrXs269ZDQLFmXXvVEM2vPkTBIJkY59eVPEBTfYjz6MTEpbRGVSx0UlgAheomlHe23XWARdlfNrZw92Gnh0vkSrb7qmIV6pxuPJbYZu66qjbMG2z7htzDxyMIFi0qk+afCVyXz1Vr2DQLgLOc4BQd/RUhACk4cENfIBw1QsI5yYOmkHx4Y7YHUBwcPOAAAABZqWMl0Rxh3UVEe7JHGBAaAMGIFI5YIDhwSGtEcRnfEkYlGR3xAQQYjAkCjkSReeNQVJvFoiY8WOIRBBwMsUCSSV9a4TntVJOOkcswM8cGVR2Y5Y5JNSNRlUbc8B92ZWJo5o40IbmhNIQyUaaaec77EUTZuijCmnEXSqGcDOapRCzl48okknzQOACQq64kjZpaQPhqAWp0sE2iemMY5YgNcjidBgSdeWiiZIy7wwKRqcbABqnHgKWqZrsLaGBvn4fLmqkYOYICaqXGQhScaBDqokQ0kYICuriWmxFwYhPARsZsEAQAh+QQJBgAiACwAAAAAQABAAIUkJiScmpzMzszs6uxkZmS0trREQkTc3tz09vTEwsQ8OjzU1tSEgoQsLiykoqT08vS8vrxMTkzk5uT8/vzMyswsKizU0tTs7uxsbmy8urzk4uT8+vzExsQ8Pjzc2tyUkpSkpqRUVlT///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG/kCRcEgsGosTxGUw3EguiMlxSq1amxcPJZGAUIYIblfguWyu6LRwcll035DEV4iAxO/cxUCq7hMnEhR4g3MiYYNwFBp8fmiAXIh4HGBwlXYJHIuNVg9bkZWTQhufiBQPm1MapJaFh5avEBqoRBsWq6Vgt5YLZ7MTArCwrcGkFL2oGwK6d8PLbwkHm4wiycSJlM5x0Y0bFNuiwLqt2dB/x1ZusbTKwQkW3xseFhzWEN/UAhZoqm/31YQHTlF5cEDQK3/hZFV5YEkhOGYDzlWZMMDgHYTPBB75dXBdAk1+JmjoR8sWHAHTiEgI5g/BLEPePCKSsBESLIcvh0z7Z4lD/koR/Fbdyynz1Uck9G5R+JmTZyQIPokMqJfAJdEirj5xYTLE5CqcV4eMJGVHn6h6S8MamWDRaIJeA3RxVVskLjEIXD0oZaqW7aoEC4SwIzWUrlilIibUs2q4CMNbEx7cCtXYSNJgSqyZrVzEK6wLK4VyNnLAGs3RqFOrXs269ZDQLFmXXvVEM2vPkS5IJkY59eVPDxTfYjz6MTEpbRGVSx0UlgAheomlHe23XWARdlfNrZw92Gnh0vkSrb7qmIV6pxuPJbYZu66qjbMG2z7htzDxyMIFi0qk+afCVyXz1Vr2DQKgL0UNwl8REpCCE0EvIRBTE/rhkR4SFZI0xAMh7jTggESOjNQFTgKeJJ5xFxHBYQUAABBBBvj9UdEgJOqXgEap4HHPii2yCIABH3hQBQIF/ScTWFOYtGMIPrboZIsKEBBAEwfMU0+N7VWRzJJNOsmijxVEsCE5/oBIxTk8AgBAl2qu6eKGVOlIFIdtstlmm2IKsRuZETLp5p2A4gknOV7EuBABgar55Z9v6hnnGxaY6UcAdgbKYp4ioHilWhZEAKabi6qJqabF4BigAwokqmijmdbDgQSGovIAqqCuyiqpiUggKV0bZICBnaMaZcEermWaAQOermlAE3hQ4EFExR4RTwIZNKGBGbGiEQQAIfkECQYAJgAsAAAAAEAAQACFJCYknJqczM7MZGZk7OrstLa0REJE3N7cfH589Pb0xMLEPDo8pKak1NbUTE5MjIqMNDI09PL0vL685Obk/P78zMrMlJKULCosnJ6c1NLUbGps7O7svLq8TEpM5OLk/Pr8xMbEPD48rKqs3NrcVFZUjI6M////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABv5Ak3BILBqLlMSGMPxMNgnKcUqtWpubUUWhkFSGCW5XMNp8rui0kLJpdN8SxVeYkMTv3AZBqu4TKRMVeINzJmGDcBUefH5ogFyIeCBgcJV2CiCLjVYRW5GVk0Ifn4gVEZtTHqSWhYeWrxIeqEQfGaulYLeWDWezFAKwsK3BpBW9qB8CunfDy28KB5uMJsnEiZTOcdGNHxXbosC6rdnQf8dWbrG0ysEKGd8fIxkg1hLf1AIZaKpv99WEB05RiXBA0Ct/4WRViWBJIThmBM5VoUDA4B2EzwQe+XVwnQJNfih46EfLFhwB04hMCOYvwSxD3jwimrAREiyHL4dM+2cJRP5KE/xW3csp89VHJPRuVfiZk2ckCT6JEKinwCXRIq4+cWEyxOQqnFeHjCRlR5+oekvDGqFg0aiCXgR0cVVbJC4xCVxHKGWqlu0qBQ2EsCM1lK5YpSYo1LNquAjDWxQi3ArV2EjSYEqsma1cxCusDSuFcjZywBrN0ahTq17NuvUQEQBiy54N4AHr0qsmSABwgbfv3r01sPYcKQvt4wtYX/4U4UPv47IvjFAt2ZqUDr6hA7CgGnewOQieR59tgG9Yv8Smmygw+znw2BxQT73FNYJ47R3M50S/6tgA979FhwFnYxGzmQkcaCceBIUR9QFVc1GzAIDiPdeBRA62FUlURO0EoN1stjXmVCVHObZAbPehGGJY54x4BwgYmsDAeCDSwtgmnfjjSSVg6UQCdNwNEUEGH+k3hUiQ4DRiWlNk8F5sK1KzYwV7pEHRjtrQguWNR3joW5TdiHFJJhodkUBBn2CkzhUaQKklFxy8AkIGDn1wwDz1KJlPGhF0ACaRaOVCVZZNxDhFmbVwsEwzg5bTFDCDFlIdOQ2qwVE2jGJqZBW1NOqFoNlkYGgfQQVKh6c9ztLJokI6Y4phj1iTKSyZbIqKSMtVIukqtapGUTpwSCAANrtU6doHBGgRhxytvlHBCBG5dqQSczkBha1oBAEAIfkECQYAJAAsAAAAAEAAQACFJCYknJqczM7MbGps7OrstLa0REJE3N7c9Pb0xMLEPDo8pKak1NbUjIqMTE5MLC4s9PL0vL685Obk/P78zMrMLCosnJ6c1NLUfH587O7svLq8TEpM5OLk/Pr8xMbEPD48rKqs3NrclJKUVFZU////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABv5AknBILBqLE0SGMOxIMojJcUqtWpuZECWRiFCGCG5XEMp0rui0cJJhdN+RxFeIiMTvXAZBqu4TJxIUeINzJGGDcBQcfH5ogFyIeB5gcJV2CR6LjVYQW5GVk0Idn4gUEJtTHKSWhYeWrxEcqEQdF6ulYLeWDGezEwKwsK3BpBS9qB0CunfDy28JB5sItMDLzcSV0Y0QDiLU1pTOEdprx1YDAADeQ7/EHhfkHSEXHrrkJMkXaBbp6eui1RIdOEUFwQFBr+4l6yKrCoMKACBC/IdPWRcKBMxVmUAA4R2FARMQPDJhRL+TFBdq8jOBwxuFtuAIYFQERMSTENXRmjYLAf4FkK8kHEGg4CROnbOM0FwYyQNNIQGMSq1AMWkRpq8SNGzywWjOkxs0Wq14yykRDTeP5qwQYqwRV6uYDEF3FGcAt0ckYIugTwiEr/0kpguLV6mnYAl6FUi39miBwkcI7JWLATDjfgbEQp7gEVZbEg684qwKeUgIbF86WL6c7nPpIhD2TmCQtnY6Ba+nQAoGIcLUkwNyH7mAjQCIr6sbCDdyepXQ5dCjS59OvfoQvavuQT+A7Qm2vtJjksrQ2x11D9ggTNjLE3rsW1I6I4ImXRUxAUJC3KLwtDTnVQkwIAQBusglHIHdrbEXf8L9h80xxN3y3Gsu3QIeCQgC2F5hcOoFYyAJE6C3X39WYfWJWUTYl11uyayyFTsiwqKdVUsFNAiKRUhAyosdbNiIT0AhMiESNr5EjVYkWtESJDxadMdMVLwHR5By7JEGR4fFQaVIVqhIXxM2xpHJSEMd9EmQL1IRE5WDiHnBVh0cQM9eTV5YRTJsVpJILnsZ2YRmU5hj4n1DSOnMjI0Mukor4viJSjvi4OdXn4QkiUYtjTJKaRcXANpHhX1q6kyaSXWyjKQkGEqMKf5JEOMnogbjgQSWlsjBq5XEikgmnhbGRoS58onIBVZa10EWnkSAqpRyhJCRdVMksUQTT0SBVxAAIfkECQYAJAAsAAAAAEAAQACFJCYklJaUzM7MZGZk7OrsREJEtLa03N7c9Pb0PDo8hIaETE5MxMLE1NbULC4spKakbG5s9PL0TEpM5Obk/P78zMrMLCosnJ6c1NLUbGps7O7sREZEvL685OLk/Pr8PD48lJKUVFZUxMbE3Nrc////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABv5AknBILBqLlA7DMPRMNAjKcUqtWocRjmJhAQA2QwRjzBGMNJ6rei30cCCObhdgAQvFHA5Dr29opGyBRB4PH3NedF52JHh7jnwVHYCCahQPCYiHiAASWI+ffCITk5RTDQuZm6qdQlmgrxURpVMXcqq3nGGvfKAds0QRGV6am7a5rbvJGGm/ESG4w8UABU281skVzLPOt4ea1G3X4o8cB6Wk3NHqtuAkbsnXDOaUHhXzrc+puO3v49f3JChos9Jgjy8sz7xtSjAARJMRGETA2wPQgwAMajrwApjuUAEQGKlE6CBR3ME2AgxaidALWD5OBmRVIlDBWsWUehjIPEIB5/4njiEsXNjJJgmZk+585hFAisiEZBxH/CIRwd4gAfEm8CSzC+lUIaQs7hLRlITGiQC/XoXnlUJJeBXKfhXrjwFZIgQm6kGg1kijugSIYKirx2tfIUoIh3SnN+5hIxRqTmRGgDCDwI+NVJ6IeQRhx5mRSPYnlQRWeGlDI/4cUC9f1UVYEqbgyp8I2EfejkOgYeJi3EMGw9PwtG5q3AcmagXOvLnz59CjDykOFXryuk98QxfuT0PtsdB1v4pAwbVz2fCkjH4lz/lZfwKEeIYr93HkugwaCNkMmDn/ZMuV91l9at03WXB6LadaYvD89t84DLyW2V/JYAaWeOKA9hhdyercRcR71almUV2GuYVaZmEp9YiHRUzgD1IeSFgKAlY1oaIeCiJxY3s2MiAJJUapZKM1TIkEyk2OVEAAgUjQ9NNaORF1BIhI8qGHCB1IWQQCB6y3EZSGHSFclaBcicFJHhwQkV4wXrSGRWTGA0kYln3ZxEBWDMQhYfEhU6cjxwmy50QV0KnXk7/0dCgffVK16CMa0sPdoYXe8Scfy6jFoGWVMnKpj49VVWej6H2m5VcUTIDhJ50iYJkoTE7lAUnYGDoOlnjCRoEGGMBi6ycYLCmdOxqMUMEeZXiSUwUjEJDrsAHxZqETUMTKRhAAOw==') no-repeat center center rgba(0, 0, 0, 0.8);
+}
+</style>
+</head>
+
+    <body class="homepage">
+    <div id="blockInput"></div>
+
+
+
+
+        <div class="header">
+    <div class="row">
+        <div class="medium-4 columns">
+            <a class="logo" href="/">Hammer.js</a>
+        </div>
+        <div class="medium-8 columns">
+            <ul class="inline-list main-nav">
+                <li><a href="/getting-started/">Docs</a></li>
+                <li><a href="https://stackoverflow.com/questions/tagged/hammer.js">Support</a></li>
+                <li><a href="https://github.com/hammerjs/hammer.js/blob/master/CONTRIBUTING.md">Contribute</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="row splash">
+	<div class="column">
+		<div class="text-center">
+			<h1>Add touch gestures to your webapp.</h1>
+			<p>
+				<a class="button large download" href="dist/hammer.min.js">
+					<strong>Hammer.min.js</strong><br>
+					<small>v2.0.8 &mdash; 7.34 kB gzipped</small>
+				</a>
+			</p>
+		</div>
+
+		<div class="try">
+			<div class="device" style="touch-action:none;">
+				<div class="device-button"></div>
+				<div class="device-screen-wrapper">
+					<div class="device-screen">
+						<div id="hitarea"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+        <div class="footer">
+    <div class="row">
+        <div class="column">
+            <br><br>
+            <div class="clearfix">
+                <a href="http://eight.nl" class="right eight-logo">
+                    <img src="/assets/img/eight-white.png" width="60">
+                </a>
+
+                <a
+                    href="//twitter.com/share"
+                    data-text="Stop, hammertime! Touch gestures for your webapp #touch #javascript #hammerjs"
+                    class="twitter-share-button">Tweet</a>
+
+                <iframe src="//ghbtns.com/github-btn.html?user=hammerjs&amp;repo=hammer.js&amp;type=watch&amp;count=true"
+                        allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
+            </div>
+            <br><br>
+        </div>
+    </div>
+</div>
+
+<script src="https://hammerjs.github.io/dist/hammer.js"></script>
+<script src="https://hammerjs.github.io/dist/hammer-time.js"></script>
+<script>
+function powerOfTwo(num) {
+    inefficientProcess();
+    if (num > 0) {
+        return powerOfTwo(num-1)*2;
+    } else {
+        return 1;
+    }
+}
+
+function inefficientProcess() {
+    var sum;
+    for (var i=0; i < 500000; i++) {
+        sum+=10;
+    }
+}
+
+console.log("about to set visibility:hidden on #blockInput");
+$("#blockInput").css({visibility: "hidden"});
+console.log("done!");
+console.log("queried visibility is " + window.getComputedStyle(blockInput).visibility);
+
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+/******/
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var toggle = document.querySelector(".toggle-sidebar");
+	var target = document.querySelector(".sidebar");
+	if(toggle && target) {
+	    toggle.addEventListener("click", function(ev) {
+	        if(target.className.indexOf('show') === -1) {
+	            target.className += ' show';
+	        } else {
+	            target.className = target.className.replace('show', '');
+	        }
+	        ev.preventDefault();
+	    });
+	}
+
+	if(document.querySelector("#hitarea")) {
+	    __webpack_require__(1);
+	}
+
+	__webpack_require__(2);
+
+
+/***/ },
+/* 1 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	* kind of messy code, but good enough for now
+	*/
+	// polyfill
+	var reqAnimationFrame = (function () {
+	    return window[Hammer.prefixed(window, 'requestAnimationFrame')] || function (callback) {
+	        window.setTimeout(callback, 1000 / 60);
+	    };
+	})();
+
+	var screen = document.querySelector(".device-screen");
+	var el = document.querySelector("#hitarea");
+
+	var START_X = Math.round((screen.offsetWidth - el.offsetWidth) / 2);
+	var START_Y = Math.round((screen.offsetHeight - el.offsetHeight) / 2);
+
+	var ticking = false;
+	var transform;
+	var timer;
+
+	var mc = new Hammer.Manager(el);
+
+	mc.add(new Hammer.Pan({ threshold: 0, pointers: 0 }));
+
+	mc.add(new Hammer.Swipe()).recognizeWith(mc.get('pan'));
+	mc.add(new Hammer.Rotate({ threshold: 0 })).recognizeWith(mc.get('pan'));
+	mc.add(new Hammer.Pinch({ threshold: 0 })).recognizeWith([mc.get('pan'), mc.get('rotate')]);
+
+	mc.add(new Hammer.Tap({ event: 'doubletap', taps: 2 }));
+	mc.add(new Hammer.Tap());
+
+	mc.on("panstart panmove", onPan);
+	mc.on("rotatestart rotatemove", onRotate);
+	mc.on("pinchstart pinchmove pinchend", onPinch);
+	mc.on("swipe", onSwipe);
+	mc.on("tap", onTap);
+	mc.on("doubletap", onDoubleTap);
+
+	mc.on("hammer.input", function(ev) {
+	    if(ev.isFinal) {
+	        resetElement();
+	    }
+	});
+
+	function logEvent(ev) {
+	    //el.innerText = ev.type;
+	}
+
+	function resetElement() {
+	    el.className = 'animate';
+	    transform = {
+	        translate: { x: START_X, y: START_Y },
+	        scale: 1,
+	        angle: 0,
+	        rx: 0,
+	        ry: 0,
+	        rz: 0
+	    };
+	    requestElementUpdate();
+	}
+
+	function updateElementTransform() {
+	    var value = [
+	        'translate3d(' + transform.translate.x + 'px, ' + transform.translate.y + 'px, 0)',
+	        'scale(' + transform.scale + ', ' + transform.scale + ')',
+	        'rotate3d('+ transform.rx +','+ transform.ry +','+ transform.rz +','+  transform.angle + 'deg)'
+	    ];
+
+	    value = value.join(" ");
+	    el.style.webkitTransform = value;
+	    el.style.mozTransform = value;
+	    el.style.transform = value;
+	    ticking = false;
+	}
+
+	function requestElementUpdate() {
+	    if(!ticking) {
+	        reqAnimationFrame(updateElementTransform);
+	        ticking = true;
+	    }
+	}
+
+	function onPan(ev) {
+	    el.className = '';
+	    transform.translate = {
+	        x: START_X + ev.deltaX,
+	        y: START_Y + ev.deltaY
+	    };
+
+	    logEvent(ev);
+	    requestElementUpdate();
+	}
+
+	var initScale = 1;
+	function onPinch(ev) {
+	    if(ev.type == 'pinchstart') {
+	        initScale = transform.scale || 1;
+	    }
+
+	    el.className = '';
+	    transform.scale = initScale * ev.scale;
+
+      if (ev.type === 'pinchend') {
+          console.log("about to set visibility:visible on #blockInput");
+          $("#blockInput").css({visibility: "visible"});
+
+          window.setTimeout(function() {powerOfTwo(1000)},0);
+
+          window.setTimeout(function() {$("#blockInput").css({visibility: "hidden"})}, 2200);
+
+     	}
+	    logEvent(ev);
+	    requestElementUpdate();
+
+
+
+
+
+
+
+
+
+	}
+
+	var initAngle = 0;
+	function onRotate(ev) {
+	    if(ev.type == 'rotatestart') {
+	        initAngle = transform.angle || 0;
+	    }
+
+	    el.className = '';
+	    transform.rz = 1;
+	    transform.angle = initAngle + ev.rotation;
+
+	    logEvent(ev);
+	    requestElementUpdate();
+	}
+
+	function onSwipe(ev) {
+	    var angle = 50;
+	    transform.ry = (ev.direction & Hammer.DIRECTION_HORIZONTAL) ? 1 : 0;
+	    transform.rx = (ev.direction & Hammer.DIRECTION_VERTICAL) ? 1 : 0;
+	    transform.angle = (ev.direction & (Hammer.DIRECTION_RIGHT | Hammer.DIRECTION_UP)) ? angle : -angle;
+
+	    clearTimeout(timer);
+	    timer = setTimeout(function () {
+	        resetElement();
+	    }, 300);
+
+	    logEvent(ev);
+	    requestElementUpdate();
+	}
+
+	function onTap(ev) {
+	    transform.rx = 1;
+	    transform.angle = 25;
+
+	    clearTimeout(timer);
+	    timer = setTimeout(function () {
+	        resetElement();
+	    }, 200);
+
+	    logEvent(ev);
+	    requestElementUpdate();
+	}
+
+	function onDoubleTap(ev) {
+	    transform.rx = 1;
+	    transform.angle = 80;
+
+	    clearTimeout(timer);
+	    timer = setTimeout(function () {
+	        resetElement();
+	    }, 500);
+
+	    logEvent(ev);
+	    requestElementUpdate();
+	}
+
+	resetElement();
+
+	document.querySelector(".device-button").addEventListener("click", function(){
+	document.querySelector(".device").classList.toggle('hammertime');
+	}, false);
+
+
+/***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-30289566-1', 'auto');
+	ga('send', 'pageview');
+
+	!function (d, s, id) {
+	    var js, fjs = d.getElementsByTagName(s)[0];
+	    if (!d.getElementById(id)) {
+	        js = d.createElement(s);
+	        js.id = id;
+	        js.src = "http://platform.twitter.com/widgets.js";
+	        fjs.parentNode.insertBefore(js, fjs);
+	    }
+	}(document, "script", "twitter-wjs");
+
+
+/***/ }
+/******/ ])
+</script>
+
+    </body>
+</html>
