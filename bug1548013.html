@@ -295,7 +295,8 @@ console.log("queried visibility is " + window.getComputedStyle(blockInput).visib
           console.log("about to set visibility:visible on #blockInput");
           $("#blockInput").css({visibility: "visible"});
 
-          window.setTimeout(function() {powerOfTwo(1000)},0);
+          //window.setTimeout(function() {powerOfTwo(1000)},0);
+          powerOfTwo(1000);
 
           window.setTimeout(function() {$("#blockInput").css({visibility: "hidden"})}, 2200);
 
