@@ -26,4 +26,16 @@
   <canvas id="canvas-no-listener"></canvas>
   <div class="spacer"></div>
 </body>
+<script type="application/javascript">
+  // Install a wheel listener on the first canvas
+  let canvasWithListener = document.getElementById("canvas-with-listener");
+  let canvasNoListener = document.getElementById("canvas-no-listener");
+
+  canvasWithListener.addEventListener("wheel", function(e) {
+    e.preventDefault();
+    e.cancelBubble = true;
+    e.stopPropagation();
+    return true;
+  });
+</script>
 </html>
