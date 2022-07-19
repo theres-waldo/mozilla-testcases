@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width; initial-scale=1.0">
+  <title>Test for Bug 1746336</title>
+  <style>
+    canvas {
+      /*touch-action: none;*/
+      width: 400px;
+      height: 400px;
+    }
+    #canvas-with-listener {
+      background: red;
+    }
+    #canvas-no-listener {
+      background: blue;
+    }
+    .spacer {
+      height: 5000px;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas-with-listener"></canvas>
+  <canvas id="canvas-no-listener"></canvas>
+  <div class="spacer"></div>
+</body>
+</html>
