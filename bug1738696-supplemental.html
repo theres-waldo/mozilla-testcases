@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <style>
+      body{
+        touch-action: manipulation;
+      }
+
+      input[type='text'],
+      input[type='number'],
+      textarea {
+        font-size: 16px;
+      }
+
+      .tab-pane{
+        overflow-y: scroll;
+        overflow-x: hidden;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid mt-5">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-4 col-sm-10 text-center">
+          <form id="getForm">
+            <input type="text" id="ident" class="form-control">
+            <button type="submit" class="btn btn-primary" id="getDisc">Button</button>
+          </form>
+        </div>
+      </div>    
+    </div>
+  </body>
+</html>
