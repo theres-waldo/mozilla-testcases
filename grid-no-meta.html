@@ -74,13 +74,15 @@
  <body>
   <table cellspacing="0" cellpadding="0" border="0">
    <script type="text/javascript">
-    var PAGE_SIZE = 2000;
+    var PAGE_WIDTH = 2000;
+    var PAGE_HEIGHT = 4000;
     var GRID_SIZE = 100;
 
-    var cnt = (PAGE_SIZE / GRID_SIZE);
-    for (var y = 0; y < cnt; y++) {
+    var rows = (PAGE_HEIGHT / GRID_SIZE);
+    var cols = (PAGE_WIDTH / GRID_SIZE);
+    for (var y = 0; y < rows; y++) {
         document.writeln( "<tr>" );
-        for (var x = 0; x < cnt; x++) {
+        for (var x = 0; x < cols; x++) {
             var label = (x * GRID_SIZE) + "," + (y * GRID_SIZE);
             document.writeln( "<td><a href='#" + label + "'>(" + label + ")</a></td>" );
         }
