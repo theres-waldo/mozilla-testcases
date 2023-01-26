@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta name="viewport" content="initial-scale=1"/>
+  <title>The Grid</title>
+  <style type="text/css">
+    html {
+        padding: 0;
+        border: 0;
+        margin: 0;
+    }
+    body {
+        padding: 0;
+        border: 0;
+        margin: 0;
+    }
+    table {
+        padding: 0;
+        margin: 0;
+        border-top: none;
+        border-left: none;
+        border-right: 1px solid black;
+        border-bottom: 1px solid black;
+    }
+    tr {
+        padding: 0;
+        border: 0;
+        margin: 0;
+    }
+    td {
+        /* top border counts as part of height, but
+           left border doesn't count as part of width.
+           go figure.
+        */
+        min-height: 99px;
+        height: 99px;
+        max-height: 99px;
+        min-width: 99px;
+        width: 99px;
+        max-width: 99px;
+        padding: 0;
+        border-left: 1px solid black;
+        border-top: 1px solid black;
+        border-right: none;
+        border-bottom: none;
+        margin: 0;
+        font-size: 12px;
+        text-align: left;
+        vertical-align: top;
+        font-family: monospace;
+    }
+    a:active {
+        color: red;
+    }
+  </style>
+  <script type="text/javascript">
+    function scroll() {
+        var target = window.location.hash.substring(1).split(/,/);
+        window.scrollTo(target[0], target[1]);
+    }
+
+    function logtouch(e) {
+        if (e.touches.length < 1) {
+            console.log(e.type + " had no touches");
+        } else {
+            console.log(e.type + " @ page(" + e.touches[0].pageX + "," + e.touches[0].pageY + ") screen (" + e.touches[0].screenX + "," + e.touches[0].screenY + ")");
+        }
+    }
+
+    window.onload = scroll;
+    window.onhashchange = scroll;
+
+  </script>
+ </head>
+ <body>
+  <table cellspacing="0" cellpadding="0" border="0">
+   <script type="text/javascript">
+    var PAGE_SIZE = 2000;
+    var GRID_SIZE = 100;
+
+    var cnt = (PAGE_SIZE / GRID_SIZE);
+    for (var y = 0; y < cnt; y++) {
+        document.writeln( "<tr>" );
+        for (var x = 0; x < cnt; x++) {
+            var label = (x * GRID_SIZE) + "," + (y * GRID_SIZE);
+            document.writeln( "<td><a href='#" + label + "'>(" + label + ")</a></td>" );
+        }
+        document.writeln( "</tr>" );
+    }
+    document.addEventListener('touchstart', logtouch, false);
+    document.addEventListener('touchmove', logtouch, false);
+    document.addEventListener('touchend', logtouch, false);
+   </script>
+  </table>
+ </body>
+</html>
