@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    html {
+      overflow: scroll;
+    }
+    #root-content {
+      height: 400vh;
+      background: linear-gradient(yellow, orange);
+    }
+    #subframe {
+      position: absolute;
+      top: 400px;
+      height: 400px;
+      width: 400px;
+      border: 2px solid black;
+      overflow: scroll;
+    }
+    #subframe-content {
+      height: 400%;
+      background: linear-gradient(cyan, lightgreen);
+    }
+  </style>
+  <body>
+    <div id="root-content"></div>
+    <div id="subframe">
+      <div id="subframe-content"></div>
+    </div>
+  </body>
+</html>
