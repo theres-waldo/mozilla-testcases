@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bug 1788530 - Helper page</title>
+    <script>
+window.onload = function(){
+    const pageHeight = document.body.offsetHeight;
+    const intViewportHeight = window.innerHeight;
+    console.log("page height" , pageHeight)
+    console.log("intViewportHeight " , intViewportHeight)
+    document.getElementsByTagName("p")[0].innerText = "document.body.offsetHeight: " + pageHeight
+    document.getElementsByTagName("p")[1].innerText = "window.innerHeight: " +intViewportHeight
+}
+
+    </script>
+</head>
+<body>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+    <p>This is a normal page</p>
+</body>
+</html>
