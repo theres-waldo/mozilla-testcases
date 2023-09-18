@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Bug 1828235 -
+        "Scroll to hide toolbar" causes errant scroll and zoom on input focus
+    </title>
+</head>
+
+<style>
+    body {
+        margin: 0 32px;
+    }
+
+    .touch-none {
+        touch-action: none;
+        margin-top: 200px;
+    }
+
+    input {
+        box-sizing: border-box;
+        width: 100%;
+    }
+</style>
+
+<body>
+    <div class="touch-none">
+        <input />
+    </div>
+</body>
+
+</html>
