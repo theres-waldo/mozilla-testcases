@@ -11,10 +11,28 @@
         height: 100svh;
         background: red;
       }
+      #report {
+        background: cyan;
+        position: fixed;
+        top: 10px;
+        left: 10px;
+      }
     </style>
   </head>
   <body>
     <div id="spacer"></div>
+    <div id="report">
+      <div id="y"></div>
+      <div id="vy"></div>
+    </div>
     <input type="text">
+    <script>
+      function updateReport() {
+        y.textContent = `y = ${window.scrollY}`;
+        vy.textContent = `vy = ${window.visualViewport.pageTop}`;
+      };
+      window.addEventListener("scroll", updateReport);
+      window.visualViewport.onscroll = updateReport;
+    </script>
   </body>
 </html>
