@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    div {
+      background: red;
+      height: 100px;
+      width: 100px;
+    }
+  </style>
+</head>
+<body>
+  <div id="target"></div>
+  <script>
+    const params = new URLSearchParams(location.search);
+    target.style.marginLeft = params.get("margin-left");
+    target.style.marginTop = params.get("margin-top");
+  </script>
+</body>
+</html>
