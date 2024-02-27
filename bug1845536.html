@@ -18,19 +18,19 @@
       const log = document.getElementById('log');
       document.addEventListener("pointerdown", function(e) {
         evcache.push(e);
-      }, log);
+      });
   
       document.addEventListener("pointerup", function(e) {
         const index = evcache.findIndex((cached) => cached.pointerId === e.pointerId);
         evcache.splice(index, 1);
-      }, log);
+      });
   
       document.addEventListener("pointermove", function(e) {
         const index = evcache.findIndex((cached) => cached.pointerId === e.pointerId);
         evcache[index] = e;
   
         log.innerText = `${evcache.map(ev => `${ev.offsetX},${ev.offsetY}\n`)}`;
-      }, log);
+      });
       </script>
     </body>
 </html>
