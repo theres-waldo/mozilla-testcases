@@ -18,7 +18,9 @@
       const log = document.getElementById('log');
       document.addEventListener("touchstart", function(e) {
         for (let touch of e.touches) {
-          evcache.push(touch);
+          if (evcache.findIndex((cached) => cached.identifier === touch.identifier) === -1) {
+            evcache.push(touch);
+          }
         }
       });
   
