@@ -28,6 +28,10 @@
           evcache.splice(index, 1);
         }
       });
+
+      document.addEventListener("touchcancel", function(e) {
+        evcache = [];
+      });
   
       document.addEventListener("touchmove", function(e) {
         for (let touch of e.touches) {
