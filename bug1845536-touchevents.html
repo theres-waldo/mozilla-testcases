@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+    p {
+      touch-action: none;
+
+      height: 400px;
+      background-color: red;
+    }
+    </style>
+  </head>
+  <body>
+    <p id="log">Interact with the page using touch events</p>
+    <script>
+      const evcache = [];
+  
+      const log = document.getElementById('log');
+      document.addEventListener("touchstart", function(e) {
+        for (let touch of e.touches) {
+          evcache.push(touch);
+        }
+      });
+  
+      document.addEventListener("touchend", function(e) {
+        for (let touch of e.touches) {
+          const index = evcache.findIndex((cached) => cached.identifier === touch.identifier);
+          evcache.splice(index, 1);
+        }
+      });
+  
+      document.addEventListener("touchmove", function(e) {
+        for (let touch of e.touches) {
+          const index = evcache.findIndex((cached) => cached.identifier === touch.identifier);
+          evcache[index] = touch;
+        }
+  
+        log.innerText = `${evcache.map(ev => `${ev.clientX},${ev.clientY}\n`)}`;
+      });
+      </script>
+    </body>
+</html>
