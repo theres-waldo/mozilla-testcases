@@ -75,7 +75,7 @@
           contents.style.height = "200vh";
         }
         if (!selections.at_top) {
-          window.scrollTo(0, window.scrollMaxY);
+          window.scrollTo(0, document.documentElement.scrollTopMax);
         }
       }
       function recompute(e) {
