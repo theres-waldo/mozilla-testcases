@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      #contents {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(lime, teal);
+      }
+      #cpanel {
+        padding: 10px;
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        border: 2px solid black;
+        border-radius: 10px;
+        background: white;
+      }
+      button {
+        margin: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="contents"></div>
+    <div id="cpanel">
+      <fieldset>
+        <legend>Element with overflow style</legend>
+        <button id="element_html" disabled>html</button>
+        <button id="element_body">body</button>
+      </fieldset>
+      <fieldset>
+        <legend>Overflow value</legend>
+        <button id="value_hidden" disabled>hidden</button>
+        <button id="value_clip">clip</button>
+        <button id="value_auto">auto</button>
+      </fieldset>
+      <fieldset>
+        <legend>Scrollability</legend>
+        <button id="scroll_yes">scrollable</button>
+        <button id="scroll_no" disabled>non-scrollable</button>
+      </fieldset>
+      <fieldset>
+        <legend>Scroll position</legend>
+        <button id="pos_top" disabled>top</button>
+        <button id="pos_bottom">bottom</button>
+      </fieldset>
+    </div>
+    <script>
+      let selections = {
+        element: document.documentElement,
+        value: "hidden",
+        scrollable: false,
+        at_top: true
+      };
+      const ids = ["element_html", "element_body",
+                   "value_hidden", "value_clip", "value_auto",
+                   "scroll_yes", "scroll_no",
+                   "pos_top", "pos_bottom"];
+      function resetState() {
+        document.documentElement.style.overflow = "unset";
+        document.body.style.overflow = "unset";
+        contents.style.height = "100%";
+        window.scrollTo(0, 0);
+      }
+      function applySelections() {
+        selections.element.style.overflow = selections.value;
+        if (selections.scrollable) {
+          contents.style.height = "200vh";
+        }
+        if (!selections.at_top) {
+          window.scrollTo(0, window.scrollMaxY);
+        }
+      }
+      function recompute(e) {
+        for (let sibling of e.target.parentElement.children) {
+          if (sibling.tagName === "BUTTON") {
+            sibling.disabled = false;
+          }
+        }
+        e.target.disabled = true;
+        switch (e.target.id) {
+          case "element_html": {
+            selections.element = document.documentElement;
+            break;
+          }
+          case "element_body": {
+            selections.element = document.body;
+            break;
+          }
+          case "value_hidden": {
+            selections.value = "hidden";
+            break;
+          }
+          case "value_clip": {
+            selections.value = "clip";
+            break;
+          }
+          case "value_auto": {
+            selections.value = "auto";
+            break;
+          }
+          case "scroll_yes": {
+            selections.scrollable = true;
+            break;
+          }
+          case "scroll_no": {
+            selections.scrollable = false;
+            break;
+          }
+          case "pos_top": {
+            selections.at_top = true;
+            break;
+          }
+          case "pos_bottom": {
+            selections.at_top = false;
+            break;
+          }
+        }
+        resetState();
+        applySelections();
+      }
+      addEventListener("DOMContentLoaded", function() {
+        resetState();
+        applySelections();
+        for (let id of ids) {
+          let btn = document.getElementById(id);
+          btn.addEventListener("click", recompute);
+        }
+      });
+    </script>
+  </body>
+</html>
