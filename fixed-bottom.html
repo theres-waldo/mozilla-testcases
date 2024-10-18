@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Element fixed to the bottom of the viewport</title>
+
+<style>
+
+.fixed {
+  bottom: 0;
+  position: fixed;
+  right: 0;
+  left: 0;
+  border: 2px solid blue
+}
+
+p {
+  margin: 0;
+}
+
+</style>
+
+<body style="height: 8000px">
+
+<div class="fixed">
+  <p>This element is fixed to the bottom.</p>
+</div>
