@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Bug 1841896 - Port APZ Fission Tests - helper-fission-tap iframe</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+      }
+        
+      #indicator {
+        background-color: red;
+        width: 10px;
+        height: 10px;
+      }
+    </style>
+<body>
+  <div id="indicator"></div>
+  <script>
+    document.addEventListener("click", e => {
+      console.log("click!");
+      indicator.style.marginLeft = e.clientX + "px";
+      indicator.style.marginTop = e.clientY + "px";
+    });
+  </script>
+</html>
