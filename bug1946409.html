@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+body {
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden !important;
+}
+input {
+  height: 20px;
+}
+#banner {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background-color: blue;
+  transform: translate3d(0px, 100%, 0px);
+}
+</style>
+<input type="button" value="scrollIntoView"/>
+<div style="height: 500vh;">
+  <br> <p> blah blah  blah  blah  blah  blah  blah  blah  blah  blah  blah  blah  blah  blah  blah  blah  blah  blah <a href="https://bugzilla.mozilla.org/">bugzilla</a>,&nbsp;<a href="https://bugzilla.mozilla.org/">bugzilla</a>,&nbsp;<a href="https://bugzilla.mozilla.org/">bugzilla</a>,&nbsp;<a href="https://bugzilla.mozilla.org/">bugzilla</a>,&nbsp;<a href="https://bugzilla.mozilla.org/">bugzilla</a>,&nbsp;<a href="https://bugzilla.mozilla.org/">bugzilla</a>,&nbsp;<a href="https://bugzilla.mozilla.org/">bugzilla</a>,&nbsp;<a href="https://bugzilla.mozilla.org/">bugzilla</a>,&nbsp;<a href="https://bugzilla.mozilla.org/">bugzilla</a>,&nbsp;<a href="https://bugzilla.mozilla.org/">bugzilla</a>,&nbsp;<a href="https://bugzilla.mozilla.org/">bugzilla</a>,&nbsp;<a href="https://bugzilla.mozilla.org/">bugzilla</a>,&nbsp;<a href="https://bugzilla.mozilla.org/">bugzilla</a>,&nbsp;<a href="https://bugzilla.mozilla.org/">bugzilla</a>,&nbsp;<a href="https://bugzilla.mozilla.org/">bugzilla</a>,&nbsp;<a href="https://bugzilla.mozilla.org/">bugzilla</a>,&nbsp;<a href="https://bugzilla.mozilla.org/">bugzilla</a>,&nbsp;<a href="https://bugzilla.mozilla.org/">bugzilla</a>,&nbsp;<a href="https://bugzilla.mozilla.org/">bugzilla</a>,&nbsp;<a href="https://bugzilla.mozilla.org/">bugzilla</a>,&nbsp;<a href="https://bugzilla.mozilla.org/">bugzilla </a>,&nbsp;
+  </p>
+</div>
+<aside id="banner" overflow="visible"></aside>
+<script>
+document.querySelector("input").addEventListener("click", () => {
+  banner.scrollIntoView();
+});
+</script>
