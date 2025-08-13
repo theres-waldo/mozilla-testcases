@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <meta name="viewport" content="width=device-width">
 <div id="report"></div>
 <script>
@@ -14,6 +15,10 @@
     report();
   });
   document.addEventListener("pointerup", e => {
+    touches = touches.filter(t => t.pointerId !== e.pointerId);
+    report();
+  });
+  document.addEventListener("pointercancel", e => {
     touches = touches.filter(t => t.pointerId !== e.pointerId);
     report();
   });
