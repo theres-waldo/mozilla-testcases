@@ -1,7 +1,7 @@
 <meta name="viewport" content="width=device-width">
 <div id="report"></div>
 <script>
-  const touches = [];
+  let touches = [];
   function report() {
     document.getElementById("report").textContent = `Active touches: ${touches.length}`;
   }
