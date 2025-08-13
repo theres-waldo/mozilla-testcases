@@ -1,0 +1,21 @@
+<meta name="viewport" content="width=device-width">
+<div id="report"></div>
+<script>
+  const touches = [];
+  function report() {
+    document.getElementById("report").textContent = `Active touches: ${touches.length}`;
+  }
+  document.addEventListener("pointerdown", e => {
+    touches.push(e);
+    report();
+  });
+  document.addEventListener("pointermove", e => {
+    touches = touches.map(t => t.pointerId !== e.pointerId ? t : e);
+    report();
+  });
+  document.addEventListener("pointerup", e => {
+    touches = touches.filter(t => t.pointerId !== e.pointerId);
+    report();
+  });
+
+</script>
