@@ -14,7 +14,7 @@
   function reportJump(magnitude) {
     report.innerHTML += `<br>JUMP by ${magnitude} pixels`;
   }
-  function location(touch) {
+  function loc(touch) {
     return {
       x: touch.pageX,
       y: touch.pageY
@@ -39,7 +39,7 @@
 
     // If only one finger is down, pan them map by the amount it's moving.
     if (touches.length == 1) {
-      let touchLocation = location(touches[0]);
+      let touchLocation = loc(touches[0]);
       if (lastTouchLocation != null) {
         panBy(lastTouchLocation, touchLocation);
       }
@@ -52,7 +52,7 @@
     // If two fingers were down and one was lifted, record the location
     // of the remaining touch as the "last touch location".
     if (touches.length == 1) {
-      lastTouchLocation = location(touches[0]);
+      lastTouchLocation = loc(touches[0]);
     }
   }
   document.addEventListener("pointerup", pointerUpOrCancel);
