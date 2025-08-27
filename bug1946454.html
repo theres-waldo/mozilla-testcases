@@ -10,24 +10,52 @@
 <div id="report"></div>
 <script>
   let touches = [];
-  function report() {
-    document.getElementById("report").textContent = `Active touches: ${touches.length}`;
+  let lastTouchLocation = null;
+  function reportJump(magnitude) {
+    report.innerHTML += `<br>JUMP by ${magnitude} pixels`;
+  }
+  function location(touch) {
+    return {
+      x: touch.pageX,
+      y: touch.pageY
+    };
+  }
+  function panBy(oldLocation, newLocation) {
+    let distance = Math.hypot(
+      Math.abs(oldLocation.x - newLocation.x),
+      Math.abs(oldLocation.x - newLocation.x));
+    if (distance > 10) {
+      reportJump(distance);
+    }
   }
   document.addEventListener("pointerdown", e => {
     touches.push(e);
-    report();
+
+    // Reset lastTouchLocation when a new finger goes down.
+    lastTouchLocation = null;
   });
   document.addEventListener("pointermove", e => {
     touches = touches.map(t => t.pointerId !== e.pointerId ? t : e);
-    report();
+
+    // If only one finger is down, pan them map by the amount it's moving.
+    if (touches.length == 1) {
+      let touchLocation = location(touches[0]);
+      if (lastTouchLocation != null) {
+        panBy(lastTouchLocation, touchLocation);
+      }
+      lastTouchLocation = touchLocation;
+    }
   });
-  document.addEventListener("pointerup", e => {
+  function pointerUpOrCancel(e) {
     touches = touches.filter(t => t.pointerId !== e.pointerId);
-    report();
-  });
-  document.addEventListener("pointercancel", e => {
-    touches = touches.filter(t => t.pointerId !== e.pointerId);
-    report();
-  });
+
+    // If two fingers were down and one was lifted, record the location
+    // of the remaining touch as the "last touch location".
+    if (touches.length == 1) {
+      lastTouchLocation = location(touches[0]);
+    }
+  }
+  document.addEventListener("pointerup", pointerUpOrCancel);
+  document.addEventListener("pointercancel", pointerUpOrCancel);
 
 </script>
