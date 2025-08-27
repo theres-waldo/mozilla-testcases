@@ -29,12 +29,14 @@
     }
   }
   document.addEventListener("pointerdown", e => {
+    e.preventDefault();
     touches.push(e);
 
     // Reset lastTouchLocation when a new finger goes down.
     lastTouchLocation = null;
   });
   document.addEventListener("pointermove", e => {
+    e.preventDefault();
     touches = touches.map(t => t.pointerId !== e.pointerId ? t : e);
 
     // If only one finger is down, pan them map by the amount it's moving.
@@ -47,6 +49,7 @@
     }
   });
   function pointerUpOrCancel(e) {
+    e.preventDefault();
     touches = touches.filter(t => t.pointerId !== e.pointerId);
 
     // If two fingers were down and one was lifted, record the location
