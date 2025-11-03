@@ -1,0 +1,23 @@
+<html class="reftest-wait" reftest-resolution="2.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+html {
+    scrollbar-width: none;
+}
+#scrolled {
+    height: 2000px;
+    width: 100%;
+}
+#footer {
+    height: 40px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    position: fixed;
+    background: green;
+}
+</style>
+<body onload="window.scrollTo(0,10000); document.documentElement.classList.remove('reftest-wait'); ">
+<div id="footer"></div>
+</body>
+</html>
