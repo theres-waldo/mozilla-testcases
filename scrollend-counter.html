@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+html {
+    background-color:#ffffcc;
+    color:#333;
+    overflow-y:scroll;
+    overflow-x:hidden;
+}
+#report {
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 20px;
+}
+</style>
+<script>
+  let count = 0;
+  function printEnd(){
+      count++;
+      var result = document.getElementById("result");
+      result.innerText = count;
+  }
+</script>
+<div id="report">
+  <code>scrollend callback count: <span id="result">0</code>
+</div>
+<script>
+  for(var i=0; i<1000; i++){
+    var child = document.createElement("div");
+    child.style.border = "1px solid #e0ebeb";
+    child.style.height = "20px";
+    child.innerHTML = i;
+    
+    document.body.appendChild(child);
+  }
+  window.addEventListener("scrollend", printEnd);
+</script>
